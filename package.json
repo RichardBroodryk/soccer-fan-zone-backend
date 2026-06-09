@@ -1,7 +1,7 @@
 {
-  "name": "rugby-anthem-backend",
+  "name": "soccer-fan-zone-backend",
   "version": "1.0.0",
-  "description": "Backend for Rugby Anthem Zone",
+  "description": "Backend for Soccer Fan Zone",
   "main": "server.js",
   "type": "commonjs",
   "scripts": {
@@ -9,7 +9,7 @@
     "start": "node server.js"
   },
   "keywords": [],
-  "author": "Rugby Anthem Zone",
+  "author": "Soccer Fan Zone",
   "license": "ISC",
   "dependencies": {
     "axios": "^1.13.5",

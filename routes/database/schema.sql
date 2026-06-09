@@ -1,5 +1,5 @@
 -- =====================================================
--- Rugby Anthem Zone — Paddle-First Database Schema
+-- Soccer Fan Zone — Database Schema
 -- Phase: Backend Foundation
 -- Database: PostgreSQL
 -- =====================================================

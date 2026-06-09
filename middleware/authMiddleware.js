@@ -1,5 +1,5 @@
 // =====================================================
-// Auth Middleware — Rugby Anthem Zone
+// Auth Middleware — Soccer Fan Zone
 // =====================================================
 
 const jwt = require("jsonwebtoken");

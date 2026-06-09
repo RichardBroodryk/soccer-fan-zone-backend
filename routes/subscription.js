@@ -1,5 +1,5 @@
 // =====================================================
-// Subscription Actions (Cancel) — Rugby Anthem Zone
+// Subscription Actions (Cancel) — Soccer Fan Zone
 // =====================================================
 
 const express = require("express");

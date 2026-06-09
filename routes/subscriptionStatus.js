@@ -1,5 +1,5 @@
 // =====================================================
-// Subscription Status Endpoint — Rugby Anthem Zone
+// Subscription Status Endpoint — Soccer Fan Zone
 // =====================================================
 
 const express = require("express");

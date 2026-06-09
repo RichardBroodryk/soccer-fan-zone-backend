@@ -15,19 +15,28 @@ function mapNewsItem(article) {
 
     excerpt: safeString(article.description, ""),
 
-    source: safeString(article.source?.name, "Unknown"),
+    source: safeString(
+      article.source?.name,
+      "Unknown"
+    ),
 
     url: safeString(article.url, "#"),
 
-    time: formatTime(article.publishedAt),
+    time: formatTime(
+      article.publishedAt
+    ),
 
     // for sorting
-    publishedAt: article.publishedAt || null,
+    publishedAt:
+      article.publishedAt || null,
 
-    // ✅ ALWAYS GUARANTEE IMAGE
-    image: article.image || FALLBACK_IMAGE,
+    // ALWAYS GUARANTEE IMAGE
+    image:
+      article.image ||
+      FALLBACK_IMAGE,
 
-    category: detectCategory(article),
+    category:
+      detectCategory(article),
 
     tags: extractTags(article),
 
@@ -37,24 +46,56 @@ function mapNewsItem(article) {
 
 /* ================= HELPERS ================= */
 
-function safeString(value, fallback = "") {
-  return typeof value === "string" ? value : fallback;
+function safeString(
+  value,
+  fallback = ""
+) {
+  return typeof value === "string"
+    ? value
+    : fallback;
 }
 
 function generateId() {
-  return Math.random().toString(36).substring(2, 10);
+  return Math.random()
+    .toString(36)
+    .substring(2, 10);
 }
 
 /* ================= CATEGORY ================= */
 
 function detectCategory(article) {
-  const text = `${article.title || ""} ${article.description || ""}`.toLowerCase();
+  const text = `${
+    article.title || ""
+  } ${
+    article.description || ""
+  }`.toLowerCase();
 
-  if (text.includes("injury")) return "injuries";
-  if (text.includes("transfer") || text.includes("sign")) return "transfers";
-  if (text.includes("interview") || text.includes("says")) return "interviews";
-  if (text.includes("press") || text.includes("conference")) return "press";
-  if (text.includes("rumor") || text.includes("linked")) return "rumors";
+  if (text.includes("injury"))
+    return "injuries";
+
+  if (
+    text.includes("transfer") ||
+    text.includes("sign")
+  )
+    return "transfers";
+
+  if (
+    text.includes("interview") ||
+    text.includes("says")
+  )
+    return "interviews";
+
+  if (
+    text.includes("press") ||
+    text.includes("conference")
+  )
+    return "press";
+
+  if (
+    text.includes("rumor") ||
+    text.includes("linked")
+  )
+    return "rumors";
 
   return "breaking";
 }
@@ -62,63 +103,144 @@ function detectCategory(article) {
 /* ================= TAG EXTRACTION ================= */
 
 function extractTags(article) {
-  const text = `${article.title || ""} ${article.description || ""}`.toLowerCase();
+  const text = `${
+    article.title || ""
+  } ${
+    article.description || ""
+  }`.toLowerCase();
 
   const keywords = [
-    "springbok",
-    "springboks",
-    "all blacks",
+    "fifa",
+    "world cup",
+    "argentina",
+    "brazil",
     "england",
     "france",
-    "ireland",
-    "scotland",
-    "wales",
-    "australia",
-    "argentina",
+    "germany",
+    "spain",
     "italy",
-    "azzurri",
-    "fiji",
-    "fijian",
-    "flying fijians",
+    "netherlands",
+    "portugal",
+    "belgium",
+    "croatia",
+    "uruguay",
+    "mexico",
+    "usa",
+    "canada",
+    "morocco",
+    "japan",
+    "south korea",
   ];
 
   return keywords
-    .filter((k) => text.includes(k))
-    .map((k) => normalizeTag(k))
-    .filter((v, i, arr) => arr.indexOf(v) === i);
+    .filter((k) =>
+      text.includes(k)
+    )
+    .map((k) =>
+      normalizeTag(k)
+    )
+    .filter(
+      (v, i, arr) =>
+        arr.indexOf(v) === i
+    );
 }
 
 /* ================= NORMALIZATION ================= */
 
 function normalizeTag(tag) {
-  if (tag.includes("springbok")) return "South Africa";
-  if (tag.includes("all blacks")) return "New Zealand";
-  if (tag === "england") return "England";
-  if (tag === "france") return "France";
-  if (tag === "ireland") return "Ireland";
-  if (tag === "scotland") return "Scotland";
-  if (tag === "wales") return "Wales";
-  if (tag === "australia") return "Australia";
-  if (tag === "argentina") return "Argentina";
-  if (tag.includes("italy") || tag.includes("azzurri")) return "Italy";
-  if (tag.includes("fiji")) return "Fiji";
+  if (tag === "fifa")
+    return "FIFA";
+
+  if (tag === "world cup")
+    return "World Cup";
+
+  if (tag === "argentina")
+    return "Argentina";
+
+  if (tag === "brazil")
+    return "Brazil";
+
+  if (tag === "england")
+    return "England";
+
+  if (tag === "france")
+    return "France";
+
+  if (tag === "germany")
+    return "Germany";
+
+  if (tag === "spain")
+    return "Spain";
+
+  if (tag === "italy")
+    return "Italy";
+
+  if (tag === "netherlands")
+    return "Netherlands";
+
+  if (tag === "portugal")
+    return "Portugal";
+
+  if (tag === "belgium")
+    return "Belgium";
+
+  if (tag === "croatia")
+    return "Croatia";
+
+  if (tag === "uruguay")
+    return "Uruguay";
+
+  if (tag === "mexico")
+    return "Mexico";
+
+  if (tag === "usa")
+    return "USA";
+
+  if (tag === "canada")
+    return "Canada";
+
+  if (tag === "morocco")
+    return "Morocco";
+
+  if (tag === "japan")
+    return "Japan";
+
+  if (tag === "south korea")
+    return "South Korea";
 
   return tag;
 }
 
 /* ================= TIME ================= */
 
-function formatTime(dateString) {
+function formatTime(
+  dateString
+) {
   if (!dateString) return "";
 
-  const diff = Date.now() - new Date(dateString).getTime();
-  const hours = Math.floor(diff / (1000 * 60 * 60));
+  const diff =
+    Date.now() -
+    new Date(
+      dateString
+    ).getTime();
 
-  if (hours < 1) return "Just now";
-  if (hours < 24) return `${hours}h ago`;
+  const hours = Math.floor(
+    diff / (1000 * 60 * 60)
+  );
 
-  const days = Math.floor(hours / 24);
+  if (hours < 1)
+    return "Just now";
+
+  if (hours < 24)
+    return `${hours}h ago`;
+
+  const days = Math.floor(
+    hours / 24
+  );
+
   return `${days}d ago`;
 }
 
-module.exports = { mapNewsItem };
+module.exports = {
+  mapNewsItem,
+};

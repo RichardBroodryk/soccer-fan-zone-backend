@@ -16,7 +16,7 @@ async function getNews() {
       "https://gnews.io/api/v4/search",
       {
         params: {
-          q: "rugby",
+           q: "FIFA World Cup OR soccer OR football",
           lang: "en",
           max: 20,
           token: GNEWS_API_KEY,

@@ -1,6 +1,5 @@
 const axios = require("axios");
 const { mapNewsItem } = require("../utils/newsMapper");
-const { newsData } = require("../fallback/newsData");
 
 const GNEWS_API_KEY = process.env.GNEWS_API_KEY;
 

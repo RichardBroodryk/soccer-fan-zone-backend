@@ -11,6 +11,13 @@ const API_KEY =
 async function footballFetch(
   endpoint
 ) {
+  const start =
+    Date.now();
+
+  console.log(
+    `⚽ START: ${endpoint}`
+  );
+
   const response =
     await fetch(
       `${BASE_URL}/${endpoint}`,
@@ -24,6 +31,12 @@ async function footballFetch(
       }
     );
 
+  console.log(
+    `⚽ RESPONSE: ${endpoint} | Status ${response.status} | ${
+      Date.now() - start
+    }ms`
+  );
+
   if (!response.ok) {
     throw new Error(
       `Football API Error: ${response.status}`
@@ -33,7 +46,15 @@ async function footballFetch(
   const data =
     await response.json();
 
-  return data.response || [];
+  console.log(
+    `⚽ COMPLETE: ${endpoint} | ${
+      Date.now() - start
+    }ms`
+  );
+
+  return (
+    data.response || []
+  );
 }
 
 /* ======================================================
@@ -46,10 +67,15 @@ async function getLiveFixtures() {
       "fixtures?live=all"
     );
 
+  console.log(
+    `⚽ LIVE FIXTURES: ${fixtures.length}`
+  );
+
   return fixtures.filter(
-  (fixture) =>
-    fixture.league?.id === 1
-);
+    (fixture) =>
+      fixture.league?.id ===
+      1
+  );
 }
 
 /* ======================================================
@@ -57,9 +83,16 @@ async function getLiveFixtures() {
 ====================================================== */
 
 async function getWorldCupFixtures() {
-  return footballFetch(
-    "fixtures?league=1&season=2026"
+  const fixtures =
+    await footballFetch(
+      "fixtures?league=1&season=2026"
+    );
+
+  console.log(
+    `⚽ WORLD CUP FIXTURES: ${fixtures.length}`
   );
+
+  return fixtures;
 }
 
 module.exports = {

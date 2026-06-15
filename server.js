@@ -33,6 +33,10 @@ const loyaltyRoutes = require(
   "./routes/loyalty"
 );
 
+const createCheckout = require(
+  "./routes/createCheckout"
+);
+
 /* ======================================================
    INIT
 ====================================================== */
@@ -430,6 +434,11 @@ app.use(
 app.use(
   "/api",
   subscriptionRoutes
+);
+
+app.use(
+  "/api/payments",
+  createCheckout
 );
 
 app.use(
